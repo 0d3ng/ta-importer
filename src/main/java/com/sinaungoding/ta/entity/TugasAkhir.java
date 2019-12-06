@@ -15,4 +15,6 @@ public class TugasAkhir {
     private String judul;
     @Column(nullable = false)
     private String jenjang;
+    @Column(nullable = false)
+    private int tahun;
 }
