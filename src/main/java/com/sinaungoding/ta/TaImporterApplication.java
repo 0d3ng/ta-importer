@@ -11,6 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
@@ -26,13 +29,39 @@ public class TaImporterApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Resource resource = new ClassPathResource("Judul-LA-TA.xlsx");
-        List<TugasAkhir> tugasAkhirs = ExcelUtil.read(resource.getFile());
-        tugasAkhirs.forEach(tugasAkhir -> {
-            log.info(tugasAkhir.getJudul());
-            log.info("" + tugasAkhir.getTahun());
-            log.info(tugasAkhir.getJenjang());
-            repository.save(tugasAkhir);
+//        Resource resource = new ClassPathResource("Judul-LA-TA.xlsx");
+//        List<TugasAkhir> tugasAkhirs = ExcelUtil.read(resource.getFile());
+//        tugasAkhirs.forEach(tugasAkhir -> {
+//            log.info(tugasAkhir.getJudul());
+//            log.info("" + tugasAkhir.getTahun());
+//            log.info(tugasAkhir.getJenjang());
+//            repository.save(tugasAkhir);
+//        });
+
+        Iterable<TugasAkhir> all = repository.findAll();
+        List<TugasAkhir> akhirs = new ArrayList<>();
+        all.forEach(akhirs::add);
+        log.info("" + akhirs.size());
+
+        int LIMIT = 5;
+
+        all.forEach(tugasAkhir -> {
+            String judul = tugasAkhir.getJudul();
+            String[] s = judul.split(" ", LIMIT);
+            StringBuilder builder = new StringBuilder();
+            for (String a : s) {
+                builder.append(a);
+            }
+            akhirs.forEach(ta -> {
+                String[] ss = judul.split(" ", LIMIT);
+                StringBuilder stringBuilder = new StringBuilder();
+                for (String b : ss) {
+                    stringBuilder.append(b);
+                }
+                if (builder.toString().toUpperCase().equals(stringBuilder.toString().toUpperCase())) {
+                    log.info(ta.getJudul());
+                }
+            });
         });
 
     }
