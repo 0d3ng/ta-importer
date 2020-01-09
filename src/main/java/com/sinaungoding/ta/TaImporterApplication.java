@@ -38,31 +38,31 @@ public class TaImporterApplication implements CommandLineRunner {
 //            repository.save(tugasAkhir);
 //        });
 
-        Iterable<TugasAkhir> all = repository.findAll();
-        List<TugasAkhir> akhirs = new ArrayList<>();
-        all.forEach(akhirs::add);
-        log.info("" + akhirs.size());
-
-        int LIMIT = 5;
-
-        all.forEach(tugasAkhir -> {
-            String judul = tugasAkhir.getJudul();
-            String[] s = judul.split(" ", LIMIT);
-            StringBuilder builder = new StringBuilder();
-            for (String a : s) {
-                builder.append(a);
-            }
-            akhirs.forEach(ta -> {
-                String[] ss = judul.split(" ", LIMIT);
-                StringBuilder stringBuilder = new StringBuilder();
-                for (String b : ss) {
-                    stringBuilder.append(b);
-                }
-                if (builder.toString().toUpperCase().equals(stringBuilder.toString().toUpperCase())) {
-                    log.info(ta.getJudul());
-                }
-            });
-        });
+//        Iterable<TugasAkhir> all = repository.findAll();
+//        List<TugasAkhir> akhirs = new ArrayList<>();
+//        all.forEach(akhirs::add);
+//        log.info("" + akhirs.size());
+//
+//        int LIMIT = 5;
+//
+//        all.forEach(tugasAkhir -> {
+//            String judul = tugasAkhir.getJudul();
+//            String[] s = judul.split(" ", LIMIT);
+//            StringBuilder builder = new StringBuilder();
+//            for (String a : s) {
+//                builder.append(a);
+//            }
+//            akhirs.forEach(ta -> {
+//                String[] ss = judul.split(" ", LIMIT);
+//                StringBuilder stringBuilder = new StringBuilder();
+//                for (String b : ss) {
+//                    stringBuilder.append(b);
+//                }
+//                if (builder.toString().toUpperCase().equals(stringBuilder.toString().toUpperCase())) {
+//                    log.info(ta.getJudul());
+//                }
+//            });
+//        });
 
     }
 }
