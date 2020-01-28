@@ -46,14 +46,14 @@ public class TaImporterApplication implements CommandLineRunner {
 //        int LIMIT = 5;
 //
 //        all.forEach(tugasAkhir -> {
-//            String judul = tugasAkhir.getJudul();
-//            String[] s = judul.split(" ", LIMIT);
+//            String judul.txt = tugasAkhir.getJudul();
+//            String[] s = judul.txt.split(" ", LIMIT);
 //            StringBuilder builder = new StringBuilder();
 //            for (String a : s) {
 //                builder.append(a);
 //            }
 //            akhirs.forEach(ta -> {
-//                String[] ss = judul.split(" ", LIMIT);
+//                String[] ss = judul.txt.split(" ", LIMIT);
 //                StringBuilder stringBuilder = new StringBuilder();
 //                for (String b : ss) {
 //                    stringBuilder.append(b);

@@ -44,7 +44,8 @@ public class Generator {
                         Proposal proposal = new Proposal();
                         proposal.setNim(dt.split(",")[2]);
                         proposal.setNama(dt.split(",")[3]);
-                        String judul = dt.split(",")[7];
+//                        String judul = dt.split(",")[7];
+                        String judul = dt.split(",")[4];//tahap 2
                         if (judul.startsWith("\""))
                             proposal.setJudul(judul.substring(1));
                         if (judul.endsWith("\""))
@@ -58,14 +59,18 @@ public class Generator {
                     break;
                 case TEMPLATE:
                     strings.forEach(dt -> {
-                        Template template = new Template();
-                        template.setRuang(dt.split(",")[0]);
-                        template.setNim(dt.split(",")[1]);
-                        template.setSesi(dt.split(",")[2]);
-                        template.setPembimbing(dt.split(",")[3]);
-                        template.setPenguji(dt.split(",")[4]);
-                        template.setPenguji2(dt.split(",")[5]);
-                        templates.add(template);
+                        try {
+                            Template template = new Template();
+                            template.setRuang(dt.split(",")[0]);
+                            template.setNim(dt.split(",")[2]);
+                            template.setSesi(dt.split(",")[1]);
+                            template.setPembimbing(dt.split(",")[3]);
+                            template.setPenguji(dt.split(",")[4]);
+                            template.setPenguji2(dt.split(",")[5]);
+                            templates.add(template);
+                        } catch (Exception e) {
+                            log.error(e.getMessage(), e);
+                        }
                     });
                     break;
             }
@@ -135,7 +140,7 @@ public class Generator {
         String data = listToString(templateJadwals);
         writer.write(data);
         writer.flush();
-        log.info(data);
+//        log.info(data);
         if (writer != null) {
             writer.close();
         }
